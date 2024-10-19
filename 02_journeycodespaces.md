@@ -47,6 +47,8 @@ Get the Grafana admin password:
 ```bash
 kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
+Password : 5UEWl5T7mCmDNtXTKXm5AjTBF7MOJaEihJEAs31s
+
 Forward the Grafana port:
 ```bash
 kubectl port-forward svc/grafana 3000:80
