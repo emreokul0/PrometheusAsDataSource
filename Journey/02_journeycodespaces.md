@@ -63,42 +63,42 @@ kubectl port-forward svc/grafana 3000:80 -n monitoring
 - **Local Environment:** Access Grafana at `http://localhost:3000`.
 - Development ports > accessed over load balancer
 - Development ports > accessed over the bridge
-- **CodeSpaces Environment:** Access Grafana at `https://friendly-rotary-phone-7w5g6j49r6hwr4p-3000.app.github.dev`.
+- **CodeSpaces Environment:** Access Grafana at `https://secret-spooky-tomb-r67g9q6675pcpwgg-3000.app.github.dev/?orgId=1`.
 - Cloud spaces environment > https://fictional-space-fiesta-675v46v6q35vpw-3000.app.github.dev/connections/datasources/edit/ce1ci1ipttkw0e
 ### 6. 🔄 Port Forward Prometheus
 ```bash
 kubectl port-forward svc/prometheus-server 9090:80 -n monitoring
 ```
 - **Local Environment:** Access Prometheus at `http://localhost:9090`.
-- **CodeSpaces Environment:** Access Prometheus at `https://friendly-rotary-phone-7w5g6j49r6hwr4p-9090.app.github.dev/graph?g0.expr=&g0.tab=1&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1h`.
+- **CodeSpaces Environment:** Access Prometheus at `https://secret-spooky-tomb-r67g9q6675pcpwgg-9090.app.github.dev/graph?g0.expr=&g0.tab=1&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1h`.
 - Development ports > accessed over load balancer
 - Development ports > accessed over the bridge
 ### 7. 🌐 Access Grafana
 Get the Grafana admin password:
 ```bash
-kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 ```
 ```
 admin is the default username
-password : KJXXQeCaprEKz3FHjq7rjosYOiZxfmnZhM4xi90F
+password : 8v0bd6rWu9uKFqCKWkxJM2BeintsW6Xy8IsDmyFf
 ```
 Access Grafana at `http://localhost:3000` and log in with `admin` and the retrieved password.
 > Use the ports in the tabs in codespaces
 ### 8. 🌐 Access Prometheus
 Forward the Prometheus port:
 ```bash
-kubectl port-forward svc/prometheus-server 9090:80
+kubectl port-forward svc/prometheus-server 9090:80 -n monitoring
 ```
 - **Local Environment:** Access Prometheus at `http://localhost:9090`.
-- **CodeSpaces Environment:** Access Prometheus at `https://friendly-rotary-phone-7w5g6j49r6hwr4p-9090.app.github.dev/graph?g0.expr=&g0.tab=1&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1h`. Check ports with 9090.
+- **CodeSpaces Environment:** Access Prometheus at `https://secret-spooky-tomb-r67g9q6675pcpwgg-9090.app.github.dev/graph?g0.expr=&g0.tab=1&g0.display_mode=lines&g0.show_exemplars=0&g0.range_input=1h`. Check ports with 9090.
 ### 9. ➕ Add Prometheus as a Data Source in Grafana
 1. **Local:** Open Grafana in your browser at `http://localhost:3000`.
-    **CodeSpaces:** Open Grafana at `https://friendly-rotary-phone-7w5g6j49r6hwr4p-3000.app.github.dev/?orgId=1`.
+    **CodeSpaces:** Open Grafana at `https://secret-spooky-tomb-r67g9q6675pcpwgg-3000.app.github.dev/?orgId=1`.
 2. Log in with `admin` and the retrieved password.
-3. Go to **Configuration** > **Data Sources**.
+3. Go to **Connections** > **Data Sources**.
 4. Click **Add data source**.
 5. Select **Prometheus**.
-6. Set the URL to `https://friendly-rotary-phone-7w5g6j49r6hwr4p-9090.app.github.dev`.
+6. Set the URL to `https://secret-spooky-tomb-r67g9q6675pcpwgg-9090.app.github.dev/`.
 7. Click **Save & Test** to verify the connection.
 ### 10. ✅ Verify Installations
 Check the status of the pods:
